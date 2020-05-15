@@ -1,0 +1,12 @@
+<div class="container" >
+<h1>Liste des personnes</h1>
+    <div *ngIf="personnes.length > 0">
+        <ul>
+            <li *ngFor="let personne of personnes">{{ personne.personId }} - {{ personne.typePerson }}</li>            
+        </ul>
+        <!--<button type="button" class="btn btn-primary" (click)="getContactByIdAndFirstname($event)">Get Contact with id and firstName.</button>-->
+    </div>
+    <div *ngIf="personnes.length < 1">
+        <h4 class="noPersonnes">Aucune personne</h4>
+    </div>
+</div>

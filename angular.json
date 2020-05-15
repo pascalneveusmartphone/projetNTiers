@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "projetNTiers": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "projetNTiers"
+    }
+  },
+  "defaultProject": "projetNTiers",
+  "cli": {
+    "analytics": "c9d9b9a4-63c2-46e5-b75c-9f4e079a6370"
+  }
 }

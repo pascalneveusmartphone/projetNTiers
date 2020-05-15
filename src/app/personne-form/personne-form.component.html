@@ -1,0 +1,174 @@
+<div class="container">
+    <h1>Créer une Personne</h1>
+    <h4>{{ diagnostic }}</h4>
+    <div [hidden]="submitted">
+      <form (ngSubmit)="onSubmit()" #personneForm="ngForm">
+        <div class="form-group">
+          <label for="typePerson">Type de Personne</label>
+          <input type="text" class="form-control" id="typePerson" name="typePerson" required 
+          [(ngModel)] = "personne.typePerson" #titre="ngModel">
+          <div [hidden]="isSaisieTypePersonneOK()" class="alert alert-danger">
+            <div class="alert alert-danger">
+               Ce champ est obligatoire et les valeurs possibles sont M (personne morale) ou P (personne physique)
+            </div>
+          </div>
+        </div>      
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="nomPersonne">Nom</label>
+          <input type="text" class="form-control" id="nomPersonne" name="nomPersonne" required 
+          [(ngModel)] = "personne.nomPersonne" #titre="ngModel">
+          <div [hidden]="isValid(personne.nomPersonne)" class="alert alert-danger">
+          <div class="alert alert-danger">
+              Ce champ est obligatoire
+          </div></div>
+        </div>  
+        <div class="form-group" [hidden]="!afficherInfosPP()">
+          <label for="sex">Sexe</label>
+          <input type="text" class="form-control" id="sex" name="sex" required 
+          [(ngModel)] = "personne.sex" #titre="ngModel">
+          <div [hidden]="isValid(personne.sex)" class="alert alert-danger">
+          <div class="alert alert-danger">
+              Ce champ est obligatoire
+          </div></div>
+        </div>
+        <div class="form-group" [hidden]="!afficherInfosPM()">
+          <label for="siren">Siren</label>
+          <input type="text" class="form-control" id="siren" name="siren" required 
+          [(ngModel)] = "personne.siren" #titre="ngModel">
+          <div [hidden]="isValid(personne.siren)" class="alert alert-danger">
+          <div class="alert alert-danger">
+              Ce champ est obligatoire
+          </div></div>
+        </div>  
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="adress1">Adresse Ligne 1</label>
+          <input type="text" class="form-control" id="adress1" name="adress1" required 
+          [(ngModel)] = "personne.adress1" #titre="ngModel">
+          <div [hidden]="isValid(personne.adress1)" class="alert alert-danger">
+          <div class="alert alert-danger">
+              Ce champ est obligatoire
+          </div></div>
+        </div>
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="adress2">Adresse Ligne 2</label>
+          <input type="text" class="form-control" id="adress2" name="adress2" required 
+          [(ngModel)] = "personne.adress2" #titre="ngModel">
+        </div>
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="cp">Code Postal</label>
+          <input type="text" class="form-control" id="cp" name="cp" required 
+          [(ngModel)] = "personne.cp" #titre="ngModel">
+          <div [hidden]="isValid(personne.cp)" class="alert alert-danger">
+          <div class="alert alert-danger">
+              Ce champ est obligatoire
+          </div></div>
+        </div>
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="ville">Ville</label>
+          <input type="text" class="form-control" id="ville" name="ville" required 
+          [(ngModel)] = "personne.ville" #titre="ngModel">
+          <div [hidden]="isValid(personne.ville)" class="alert alert-danger">
+          <div class="alert alert-danger">
+              Ce champ est obligatoire
+          </div></div>
+        </div>
+        <div class="form-group" [hidden]="!afficherInfosPP()">
+          <label for="dateNaiss">Date de naissance</label>
+          <input type="date" class="form-control" id="dateNaiss" [(ngModel)] = "personne.dateNaiss" name="dateExecution"> 
+          <div [hidden]="isValid(personne.dateNaiss)" class="alert alert-danger">
+            <div class="alert alert-danger">
+                Ce champ est obligatoire
+            </div></div>
+        </div>
+        <div class="form-group" [hidden]="!afficherInfosPP()">
+          <label for="lieuNaiss">Lieu de naissance</label>
+          <input type="text" class="form-control" id="lieuNaiss" name="lieuNaiss" required 
+          [(ngModel)] = "personne.lieuNaiss" #titre="ngModel">
+          <div [hidden]="isValid(personne.lieuNaiss)" class="alert alert-danger">
+            <div class="alert alert-danger">
+                Ce champ est obligatoire
+            </div></div>
+        </div>
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="portable">Téléphone (portable)</label>
+          <input type="text" class="form-control" id="portable" name="portable" required 
+          [(ngModel)] = "personne.portable" #titre="ngModel">
+          <div [hidden]="isValid(personne.portable)" class="alert alert-danger">
+            <div class="alert alert-danger">
+                Ce champ est obligatoire
+            </div></div>
+        </div>
+        <div class="form-group" [hidden]="!isSaisieTypePersonneOK()">
+          <label for="mail">Mail</label>
+          <input type="text" class="form-control" id="mail" name="mail" required 
+          [(ngModel)] = "personne.mail" #titre="ngModel">
+          <div [hidden]="isValid(personne.mail)" class="alert alert-danger">
+            <div class="alert alert-danger">
+                Ce champ est obligatoire
+            </div></div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success" [disabled]="!isSaisieOK()">Submit</button>
+        <button type="button" class="btn btn-default" (click)="newPersonne(); personneForm.reset()">Nouvelle personne</button>
+
+      </form>
+    </div>
+	
+    <div [hidden]="!submitted">
+        <h2>Voici votre personne  :</h2>
+        <div class="row">
+          <div class="col-xs-3">Identifiant affecté</div>
+          <div class="col-xs-9">{{ personne.personId }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Type</div>
+          <div class="col-xs-9">{{ personne.typePerson }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Nom</div>
+          <div class="col-xs-9">{{ personne.nomPersonne }}</div>
+        </div>
+        <div class="row" [hidden]="!afficherInfosPP()"> 
+          <div class="col-xs-3">Sexe</div>
+          <div class="col-xs-9">{{ personne.sex }}</div>
+        </div>
+        <div class="row" [hidden]="!afficherInfosPM()">
+          <div class="col-xs-3">Siren</div>
+          <div class="col-xs-9">{{ personne.siren }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Adresse ligne 1</div>
+          <div class="col-xs-9">{{ personne.adress1 }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Adresse ligne 2</div>
+          <div class="col-xs-9">{{ personne.adress2 }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Code Postal</div>
+          <div class="col-xs-9">{{ personne.cp }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Ville</div>
+          <div class="col-xs-9">{{ personne.ville }}</div>
+        </div>
+        <div class="row" [hidden]="!afficherInfosPP()">
+          <div class="col-xs-3">Date de naissance</div>
+          <div class="col-xs-9">{{ personne.dateNaiss }}</div>
+        </div>
+        <div class="row" [hidden]="!afficherInfosPP()">
+          <div class="col-xs-3">Lieu de naissance</div>
+          <div class="col-xs-9">{{ personne.lieuNaiss }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Téléphone (portable)</div>
+          <div class="col-xs-9">{{ personne.portable }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Mail</div>
+          <div class="col-xs-9">{{ personne.mail }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Modifier</button>
+     </div>
+</div>
