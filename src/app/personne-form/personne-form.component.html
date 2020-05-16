@@ -74,7 +74,8 @@
         </div>
         <div class="form-group" [hidden]="!afficherInfosPP()">
           <label for="dateNaiss">Date de naissance</label>
-          <input type="date" class="form-control" id="dateNaiss" [(ngModel)] = "personne.dateNaiss" name="dateExecution"> 
+          <input type="date" class="form-control" id="dateNaiss"
+           [(ngModel)] = "personne.dateNaiss" name="dateNaiss"> 
           <div [hidden]="isValid(personne.dateNaiss)" class="alert alert-danger">
             <div class="alert alert-danger">
                 Ce champ est obligatoire
