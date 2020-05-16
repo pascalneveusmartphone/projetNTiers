@@ -2,7 +2,7 @@
 <h1>Liste des personnes</h1>
     <div *ngIf="personnes.length > 0">
         <ul>
-            <li *ngFor="let personne of personnes">{{ personne.personId }} - {{ personne.typePerson }}</li>            
+            <li *ngFor="let personne of personnes">{{ personne.personId }} - {{ personne.typePerson }} - {{ personne.nomPersonne }}</li>            
         </ul>
         <!--<button type="button" class="btn btn-primary" (click)="getContactByIdAndFirstname($event)">Get Contact with id and firstName.</button>-->
     </div>

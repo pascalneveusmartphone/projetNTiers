@@ -5,9 +5,17 @@ import { environment } from 'src/environments/environment';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json; charset=utf-8; Accept-Enconding',
+    'Access-Control-Allow-Origin': '*'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class PersonneService {
 
   // contextPath = 'rest/todos';
@@ -26,8 +34,7 @@ export class PersonneService {
 
   getPersonnes() {        
     return this.http
-                .get<Array<Personne>>(environment.apiUrl + '/getAllPerson',
-                  { headers: {'Content-Type': 'application/json'} } )
+                .get<Array<Personne>>(environment.apiUrl + '/getAllPerson')
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -35,8 +42,7 @@ export class PersonneService {
 
   getPersonneById(id: number) {        
     return this.http
-                .get<Personne>(environment.apiUrl + '/getPersonById' + '/' + id,
-                  { headers: {'Content-Type': 'application/json'} } )
+                .get<Personne>(environment.apiUrl + '/getPersonById' + '/' + id )
                 .pipe(
                   catchError(this.handleError)
                 )
@@ -46,8 +52,7 @@ export class PersonneService {
     console.log(JSON.stringify(personne));
     return this.http
                 .post<Personne>(environment.apiUrl + '/insertPerson',
-                JSON.stringify(personne),
-                  { headers: {'Content-Type': 'application/json'} } )
+                JSON.stringify(personne),httpOptions )
                 .pipe(
                   catchError(this.handleError)
                 );
