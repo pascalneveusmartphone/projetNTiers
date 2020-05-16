@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { PersonnesComponent } from './personnes/personnes.component';
 import { RouterModule } from '@angular/router';
 import { PersonneFormComponent } from './personne-form/personne-form.component';
+import { RouterFormComponent } from './router-form/router-form.component';
+import { ROUTES } from './app.routes';
 
 
 @NgModule({
@@ -14,11 +16,13 @@ import { PersonneFormComponent } from './personne-form/personne-form.component';
     AppComponent,
     PersonnesComponent,
     PersonneFormComponent,
+    RouterFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
