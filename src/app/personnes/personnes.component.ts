@@ -18,10 +18,10 @@ export class PersonnesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('In ngOnInit');
-    this.personnesService.getPersonnes().subscribe(
+    this.personnesService.getValidation().subscribe(
       (data: Array<Personne>) => {
         this.personnes = data;
-        // console.log(this.contacts);
+        console.log(this.personnes);
       },
       (error: HttpErrorResponse) => {
         console.error(error.statusText + ' - ' +error.message);
